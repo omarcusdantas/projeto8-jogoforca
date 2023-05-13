@@ -8,12 +8,22 @@ import forca5 from "../../assets/forca5.png";
 import forca6 from "../../assets/forca6.png";
 
 export default function Jogo(props) {
+    const forcaImages = [
+        forca0,
+        forca1,
+        forca2,
+        forca3,
+        forca4,
+        forca5,
+        forca6
+    ];
+
     return (
         <GameContainer>
-            <GameImage src={forca0}></GameImage>
+            <GameImage src={forcaImages[props.wrongs]}></GameImage>
             <Container>
                 <StartButton onClick={props.onClick}>Escolher Palavra</StartButton>
-                <Word>{props.letters.join("")}</Word>
+                <Word gameState={props.gameState}>{props.gameState === "loose" ? props.word : props.letters.join("")}</Word>
             </Container>
         </GameContainer>
     );

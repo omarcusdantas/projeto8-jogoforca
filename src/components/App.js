@@ -9,19 +9,35 @@ export default function App() {
     const [disabledKeys, setDisabledKeys] = React.useState([]);
     const [word, setWord] = React.useState("");
     const [letters, setLetters] = React.useState([]);
+    const [wrongs, setWrongs] = React.useState(0);
+    const [points, setPoints] = React.useState(0);
+    const [gameState, setGameState] = React.useState("playing");
+
+    function checkGame(newPoints, missCount) {
+        if (newPoints === word.length) {
+            setGameState("win");
+            setEnabledKeybord(false);
+        }
+        if (missCount === 6) {
+            setEnabledKeybord(false);
+            setGameState("loose");
+        }
+    }
 
     function getIndexOfLetter(str, letter) {
         const index = [];
-        const normalizedStr = str.normalize("NFD");
 
-        for (let i = 0; i < normalizedStr.length; i++) {
-            const normalizedChar = normalizedStr[i].toLowerCase();
-
-            if (normalizedChar === letter.toLowerCase()) {
+        for (let i = 0; i < str.length; i++) {
+            if (str[i] === letter) {
                 index.push(i);
             }
         }
 
+        if (index.length === 0) {
+            setWrongs(wrongs+1);
+            checkGame(points, wrongs+1)
+            return index;
+        }
         return index;
     }
 
@@ -41,6 +57,8 @@ export default function App() {
             }
         });
 
+        setPoints(points+indexes.length);
+        checkGame(points+indexes.length, wrongs);
         setLetters(newLetters);
     }
 
@@ -52,25 +70,35 @@ export default function App() {
         updateLetters(newWord);
     }
 
-    function startGame() {
-        setEnabledKeybord(true);
-        setDisabledKeys([]);
-        selectWord();
-    }
-
     function handleKeyClick(index, letter) {
         setDisabledKeys([...disabledKeys, index]);
         updateLetters(false, letter);
     }
 
+    function startGame() {
+        setEnabledKeybord(true);
+        setDisabledKeys([]);
+        setGameState("playing");
+        setWrongs(0);
+        setPoints(0);
+        selectWord();
+    }
+
     return (
         <>
             <GlobalStyle />
-            <Jogo onClick={startGame} letters={letters}></Jogo>
+            <Jogo 
+                onClick={startGame} 
+                letters={letters}
+                gameState={gameState}
+                wrongs={wrongs}
+                word={word}>
+            </Jogo>
             <Letras
                 enabledKeyboard={enabledKeybord}
                 disabledKeys={disabledKeys}
-                onKeyClick={handleKeyClick}></Letras>
+                onKeyClick={handleKeyClick}>
+            </Letras>
         </>
     );
 }

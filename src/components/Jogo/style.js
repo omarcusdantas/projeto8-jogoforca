@@ -37,4 +37,14 @@ export const Word = styled.div`
     font-family: "Noto Sans", sans-serif;
     font-size: 50px;
     font-weight: 700;
+
+    color: ${(props) => {
+            if (props.gameState === 'win') {
+            return 'green';
+            } else if (props.gameState === 'loose') {
+            return 'red';
+            } else if (props.gameState === 'playing') {
+            return 'black';
+            }
+        }};
 `;
