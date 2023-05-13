@@ -23,7 +23,7 @@ export default function Jogo(props) {
             <GameImage src={forcaImages[props.wrongs]} data-test="game-image"></GameImage>
             <Container>
                 <StartButton onClick={props.onClick} data-test="choose-word">Escolher Palavra</StartButton>
-                <Word gameState={props.gameState} data-test="word">{props.gameState === "loose" ? props.word : props.letters.join("")}</Word>
+                <Word gameState={props.gameState} data-test="word">{props.gameState === "loose" || props.gameState === "win" ? props.word : props.letters.join("")}</Word>
             </Container>
         </GameContainer>
     );

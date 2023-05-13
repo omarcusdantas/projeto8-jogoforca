@@ -2,6 +2,7 @@ import React from "react";
 import { GlobalStyle } from "./style";
 import Jogo from "./Jogo/Jogo";
 import Letras from "./Letras/Letras";
+import Chute from "./Chute/Chute";
 import palavras from "../palavras";
 
 export default function App() {
@@ -23,6 +24,17 @@ export default function App() {
             setGameState("loose");
         }
     }
+
+    function guessWord(input) {
+      const normalizedWord = word.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const normalizedInput = input.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      if (normalizedInput.toLowerCase() === normalizedWord) {
+          checkGame(word.length, wrongs);
+          return;
+      }
+      setWrongs(6);
+      checkGame(0, 6);
+  }
 
     function getIndexOfLetter(str, letter) {
         const index = [];
@@ -98,6 +110,10 @@ export default function App() {
                 disabledKeys={disabledKeys}
                 onKeyClick={handleKeyClick}>
             </Letras>
+            <Chute
+                enabledKeyboard={enabledKeybord}
+                onButtonClick={guessWord}>
+            </Chute>
         </>
     );
 }
