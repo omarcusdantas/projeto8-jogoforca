@@ -10,7 +10,7 @@ export default function Letras(props) {
                     key={index} 
                     letter={letter}
                     disabled={!props.enabledKeyboard || props.disabledKeys.includes(index)}
-                    onClick={() => props.onKeyClick(index)}/>
+                    onClick={() => props.onKeyClick(index, alfabeto[index])}/>
             )}
         </Keybord>
     );

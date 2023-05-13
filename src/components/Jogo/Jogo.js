@@ -13,7 +13,7 @@ export default function Jogo(props) {
             <GameImage src={forca0}></GameImage>
             <Container>
                 <StartButton onClick={props.onClick}>Escolher Palavra</StartButton>
-                <Word>_ua _e _ _e _a</Word>
+                <Word>{props.letters.join("")}</Word>
             </Container>
         </GameContainer>
     );
