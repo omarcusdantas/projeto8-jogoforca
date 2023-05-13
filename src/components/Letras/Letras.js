@@ -18,7 +18,7 @@ export default function Letras(props) {
 
 function Button(props) {
     return (
-        <KeyButton disabled={props.disabled} onClick={props.onClick}>
+        <KeyButton disabled={props.disabled} onClick={props.onClick} data-test="letter">
             {props.letter.toUpperCase()}
         </KeyButton>
     )
