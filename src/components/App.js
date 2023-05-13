@@ -26,9 +26,10 @@ export default function App() {
 
     function getIndexOfLetter(str, letter) {
         const index = [];
+        const normalizedStr = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-        for (let i = 0; i < str.length; i++) {
-            if (str[i] === letter) {
+        for (let i = 0; i < normalizedStr.length; i++) {
+            if (normalizedStr[i] === letter) {
                 index.push(i);
             }
         }
@@ -51,10 +52,9 @@ export default function App() {
         const indexes = getIndexOfLetter(word, letter);
         const newLetters = letters.map((item, index) => {
             if (indexes.includes(index)) {
-                return letter;
-            } else {
-                return item;
+                return word[index];
             }
+            return item;
         });
 
         setPoints(points+indexes.length);
