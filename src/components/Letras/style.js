@@ -3,9 +3,15 @@ import styled from "styled-components";
 export const Keybord = styled.div`
     margin: 70px auto;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 12px;
     width: 665px;
+
+    @media (max-width: 768px) {
+        width: 300px;
+        margin: 0 auto;
+    } 
 `;
 
 export const KeyButton = styled.button`

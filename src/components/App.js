@@ -65,7 +65,6 @@ export default function App() {
     function selectWord() {
         const randomIndex = Math.floor(Math.random() * palavras.length);
         const newWord = palavras[randomIndex];
-        console.log(newWord);
         setWord(newWord);
         updateLetters(newWord);
     }

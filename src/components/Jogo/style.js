@@ -3,13 +3,23 @@ import styled from "styled-components";
 export const GameContainer = styled.div`
     padding: 0 40px;
     margin: 60px auto;
-    width: 1025px;
+    max-width: 1025px;
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+        margin: 20px auto;
+    } 
 `;
 
 export const GameImage = styled.img`
     width: 400px;
+    
+    @media (max-width: 768px) {
+        width: 250px;
+    }
 `;
 
 export const Container = styled.div`
@@ -18,6 +28,11 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: end;
+
+    @media (max-width: 768px) {
+        align-items: center;
+        gap: 20px;
+    } 
 `;
 
 export const StartButton = styled.button`
@@ -31,6 +46,12 @@ export const StartButton = styled.button`
     border-radius: 8px;
     border: none;
     cursor: pointer;
+
+    @media (max-width: 768px) {
+        font-size: 15px;
+        width: 150px;
+        height: 40px;
+    } 
 `;
 
 export const Word = styled.div`
