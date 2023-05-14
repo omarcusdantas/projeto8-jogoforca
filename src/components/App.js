@@ -26,19 +26,25 @@ export default function App() {
     }
 
     function guessWord(input) {
-      const normalizedWord = word.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      const normalizedInput = input.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      if (normalizedInput.toLowerCase() === normalizedWord) {
-          checkGame(word.length, wrongs);
-          return;
-      }
-      setWrongs(6);
-      checkGame(0, 6);
-  }
+        const normalizedWord = word
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
+        const normalizedInput = input
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
+        if (normalizedInput.toLowerCase() === normalizedWord) {
+            checkGame(word.length, wrongs);
+            return;
+        }
+        setWrongs(6);
+        checkGame(0, 6);
+    }
 
     function getIndexOfLetter(str, letter) {
         const index = [];
-        const normalizedStr = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const normalizedStr = str
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
 
         for (let i = 0; i < normalizedStr.length; i++) {
             if (normalizedStr[i] === letter) {
@@ -47,8 +53,8 @@ export default function App() {
         }
 
         if (index.length === 0) {
-            setWrongs(wrongs+1);
-            checkGame(points, wrongs+1)
+            setWrongs(wrongs + 1);
+            checkGame(points, wrongs + 1);
             return index;
         }
         return index;
@@ -69,8 +75,8 @@ export default function App() {
             return item;
         });
 
-        setPoints(points+indexes.length);
-        checkGame(points+indexes.length, wrongs);
+        setPoints(points + indexes.length);
+        checkGame(points + indexes.length, wrongs);
         setLetters(newLetters);
     }
 
@@ -98,22 +104,19 @@ export default function App() {
     return (
         <>
             <GlobalStyle />
-            <Jogo 
-                onClick={startGame} 
+            <Jogo
+                onClick={startGame}
                 letters={letters}
                 gameState={gameState}
                 wrongs={wrongs}
-                word={word}>
-            </Jogo>
+                word={word}></Jogo>
             <Letras
                 enabledKeyboard={enabledKeybord}
                 disabledKeys={disabledKeys}
-                onKeyClick={handleKeyClick}>
-            </Letras>
+                onKeyClick={handleKeyClick}></Letras>
             <Chute
                 enabledKeyboard={enabledKeybord}
-                onButtonClick={guessWord}>
-            </Chute>
+                onButtonClick={guessWord}></Chute>
         </>
     );
 }

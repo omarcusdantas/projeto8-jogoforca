@@ -11,14 +11,14 @@ export const GameContainer = styled.div`
         flex-direction: column;
         align-items: center;
         margin: 20px auto;
-    } 
-`;
+    }
 
-export const GameImage = styled.img`
-    width: 400px;
-    
-    @media (max-width: 768px) {
-        width: 250px;
+    img {
+        width: 400px;
+
+        @media (max-width: 768px) {
+            width: 250px;
+        }
     }
 `;
 
@@ -32,26 +32,26 @@ export const Container = styled.div`
     @media (max-width: 768px) {
         align-items: center;
         gap: 20px;
-    } 
-`;
+    }
 
-export const StartButton = styled.button`
-    background-color: #27AE60;
-    color: #FFFFFF;
-    font-family: "Roboto", sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    width: 200px;
-    height: 60px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
+    button {
+        background-color: #27ae60;
+        color: #ffffff;
+        font-family: "Roboto", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        width: 200px;
+        height: 60px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
 
-    @media (max-width: 768px) {
-        font-size: 15px;
-        width: 150px;
-        height: 40px;
-    } 
+        @media (max-width: 768px) {
+            font-size: 15px;
+            width: 150px;
+            height: 40px;
+        }
+    }
 `;
 
 export const Word = styled.div`
@@ -59,13 +59,13 @@ export const Word = styled.div`
     font-size: 50px;
     font-weight: 700;
 
-    color: ${(props) => {
-            if (props.gameState === 'win') {
-            return 'green';
-            } else if (props.gameState === 'loose') {
-            return 'red';
-            } else if (props.gameState === 'playing') {
-            return 'black';
-            }
-        }};
+    color: ${({gameState}) => {
+        if (gameState === "win") {
+            return "green";
+        } else if (gameState === "loose") {
+            return "red";
+        } else if (gameState === "playing") {
+            return "black";
+        }
+    }};
 `;

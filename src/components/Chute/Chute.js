@@ -1,14 +1,26 @@
 import React from "react";
-import { Container, Title, Input, Button } from "./style";
+import { Container } from "./style";
 
-export default function Chute(props) {
-    const [input, setInput] = React.useState("");
+export default function Chute({ enabledKeyboard, onButtonClick }) {
+    const [inputValue, setInputValue] = React.useState("");
 
     return (
         <Container>
-            <Title>Já sei a palavra!</Title>
-            <Input onChange={(event) => setInput(event.target.value)} value={input} data-test="guess-input"></Input>
-            <Button onClick={() => {props.onButtonClick(input); setInput("");}} disabled={!props.enabledKeyboard} data-test="guess-button">Chutar</Button>
+            <h2>Já sei a palavra!</h2>
+            <input
+                onChange={(event) => setInputValue(event.target.value)}
+                value={inputValue}
+                disabled={!enabledKeyboard}
+                data-test="guess-input"></input>
+            <button
+                onClick={() => {
+                    onButtonClick(inputValue);
+                    setInputValue("");
+                }}
+                disabled={!enabledKeyboard}
+                data-test="guess-button">
+                Chutar
+            </button>
         </Container>
     );
 }
